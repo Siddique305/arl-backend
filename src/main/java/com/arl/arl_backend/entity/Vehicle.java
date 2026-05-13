@@ -17,14 +17,14 @@ public class Vehicle {
     private String driverName;
     private String driverMobile;
     private String vehicleType;
-    private boolean available;
+    private Boolean available;
 
     public Vehicle(){
         
     }
 
     public Vehicle(Long id, String vehicleNumber, String ownerName, String ownerMobile, String driverName,
-            String driverMobile, String vehicleType, boolean available) {
+            String driverMobile, String vehicleType, Boolean available) {
         this.id = id;
         this.vehicleNumber = vehicleNumber;
         this.ownerName = ownerName;
@@ -91,11 +91,11 @@ public class Vehicle {
         this.vehicleType = VehicleType;
     }
 
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
     
