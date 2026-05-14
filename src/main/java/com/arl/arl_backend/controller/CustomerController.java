@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.arl.arl_backend.dto.CustomerDTO;
 import com.arl.arl_backend.entity.Customer;
 import com.arl.arl_backend.service.CustomerService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -18,7 +21,14 @@ public class CustomerController {
     private CustomerService customerService;
     
     @PostMapping
-    public Customer addCustomer(@RequestBody Customer customer){
+    public Customer addCustomer(@Valid @RequestBody CustomerDTO customersDTO){
+
+        Customer customer = new Customer();
+        customer.setcompanyName(customersDTO.getCompanyName());
+        customer.setContactPerson(customersDTO.getContactPerson());
+        customer.setMobileNumber(customersDTO.getMobileNumber());
+        customer.setAddress(customersDTO.getAddress());
+        
         return customerService.saveCustomer(customer);
 
     }
