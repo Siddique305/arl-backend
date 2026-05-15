@@ -10,9 +10,10 @@ import com.arl.arl_backend.entity.Customer;
 import com.arl.arl_backend.service.CustomerService;
 
 import jakarta.validation.Valid;
+import com.arl.arl_backend.response.ApiResponse;
 
 
-@RestController
+@RestController     
 @RequestMapping("/customers")
 public class CustomerController {
 
@@ -21,15 +22,16 @@ public class CustomerController {
     private CustomerService customerService;
     
     @PostMapping
-    public Customer addCustomer(@Valid @RequestBody CustomerDTO customersDTO){
+    public ApiResponse<Customer> addCustomer(@Valid @RequestBody CustomerDTO customersDTO){
 
         Customer customer = new Customer();
-        customer.setcompanyName(customersDTO.getCompanyName());
+        customer.setCompanyName(customersDTO.getCompanyName());
         customer.setContactPerson(customersDTO.getContactPerson());
         customer.setMobileNumber(customersDTO.getMobileNumber());
         customer.setAddress(customersDTO.getAddress());
-        
-        return customerService.saveCustomer(customer);
+
+        Customer savedCustomer = customerService.saveCustomer(customer);
+        return new ApiResponse<>(true, "Customer added successfully", savedCustomer);
 
     }
 
