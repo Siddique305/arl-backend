@@ -3,6 +3,7 @@ package com.arl.arl_backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.arl.arl_backend.dto.LoginRequestDTO;
 import com.arl.arl_backend.dto.RegisterRequestDTO;
 import com.arl.arl_backend.entity.User;
 import com.arl.arl_backend.response.ApiResponse;
@@ -27,6 +28,17 @@ public class AuthController {
         saveUser
       );
         
+    }
+
+    @PostMapping("/login")
+    public ApiResponse<String> loginUser(@Valid @RequestBody LoginRequestDTO login){
+        String token = userService.loginUser(login);
+
+        return new ApiResponse<>(
+            true,
+            "Login Successfully",
+            token
+        );
     }
     
 }

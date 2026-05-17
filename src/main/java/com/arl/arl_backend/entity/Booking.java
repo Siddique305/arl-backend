@@ -25,7 +25,7 @@ public class Booking {
     private Double freightAmount;
     private Double advanceAmount;
     private Double remainingAmount;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private BookingStatus status;
 
     @ManyToOne
