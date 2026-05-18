@@ -51,7 +51,7 @@ public class UserServive {
         }
         
         return jwtUtil.generateToken(
-            user.getUsername()
+            user.getUsername(), user.getRole()
         );
         
     }
