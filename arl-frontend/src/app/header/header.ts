@@ -6,6 +6,7 @@ import { Login } from '../auth/login/login';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login-service';
+import { LogOutPopup } from '../auth/log-out-popup/log-out-popup';
 
 
 @Component({
@@ -24,8 +25,17 @@ ngOnInit(): void {
   }
 
 logout(){
+
+  const dialogRef = this.dialog.open(LogOutPopup);
+  dialogRef.afterClosed().subscribe( data => {
+    // console.log(`Dialog result: ${data}`);
+    if(data === true) {
   this.loginService.logout()
   this.router.navigate(['login'])
+    } else {
+      console.log('User wished to continue');
+    }
+  })
 }
 
 }
